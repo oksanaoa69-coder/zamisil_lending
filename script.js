@@ -143,6 +143,56 @@
 
   nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
 
+  const scrollToHash = (hash, updateHistory = true) => {
+    if (!hash || hash === "#") return false;
+
+    let targetId;
+    try {
+      targetId = decodeURIComponent(hash.slice(1));
+    } catch {
+      return false;
+    }
+
+    const target = document.getElementById(targetId);
+    if (!target) return false;
+
+    const anchorPoint = target.classList.contains("section")
+      ? target.querySelector(".section-kicker") || target
+      : target;
+    const headerHeight = header?.getBoundingClientRect().height || 0;
+    const breathingRoom = window.innerWidth <= 650 ? 18 : 28;
+    const top = Math.max(
+      0,
+      window.scrollY + anchorPoint.getBoundingClientRect().top - headerHeight - breathingRoom,
+    );
+
+    if (updateHistory && window.location.hash !== hash) {
+      window.history.pushState(null, "", hash);
+    }
+
+    window.scrollTo({
+      top,
+      behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+    });
+    return true;
+  };
+
+  document.querySelectorAll('a[href^="#"]:not(.skip-link)').forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const hash = link.getAttribute("href");
+      if (!scrollToHash(hash)) return;
+      event.preventDefault();
+    });
+  });
+
+  const alignHashAfterNativeNavigation = () => {
+    if (!window.location.hash) return;
+    window.requestAnimationFrame(() => scrollToHash(window.location.hash, false));
+  };
+
+  window.addEventListener("load", alignHashAfterNativeNavigation);
+  window.addEventListener("hashchange", alignHashAfterNativeNavigation);
+
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && nav.classList.contains("is-open")) {
       closeMenu();
