@@ -157,7 +157,7 @@
     if (!target) return false;
 
     const anchorPoint = target.classList.contains("section")
-      ? target.querySelector(".section-kicker") || target
+      ? target.querySelector(".display-heading") || target.querySelector(".section-kicker") || target
       : target;
     const headerHeight = header?.getBoundingClientRect().height || 0;
     const breathingRoom = window.innerWidth <= 650 ? 18 : 28;
