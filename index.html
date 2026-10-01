@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Замысел — премиальный клуб настольных игр, где красивые партии становятся началом новых идей."
+    />
+    <meta name="theme-color" content="#f4f1e9" />
+    <title>Замысел — клуб настольных игр</title>
+    <link rel="preload" href="assets/images/hero-together.jpg" as="image" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">К содержанию</a>
+
+    <div class="page-progress" aria-hidden="true"><span></span></div>
+    <div class="cursor-glow" aria-hidden="true"></div>
+
+    <header class="site-header" data-header>
+      <a class="brand" href="#top" aria-label="Замысел — на главную">
+        <span class="brand-mark" aria-hidden="true"><i></i></span>
+        <span class="brand-name">Замысел</span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-nav"
+        data-menu-toggle
+      >
+        <span>Меню</span>
+        <i aria-hidden="true"></i>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Основная навигация" data-nav>
+        <a href="#idea">Идея</a>
+        <a href="#collection">Коллекция</a>
+        <a href="#club">Клуб</a>
+        <a class="nav-cta" href="#invitation">Выбрать игру</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-orbit orbit-one" aria-hidden="true"></div>
+        <div class="hero-orbit orbit-two" aria-hidden="true"></div>
+
+        <div class="hero-copy">
+          <p class="eyebrow reveal">Премиальный клуб настольных игр</p>
+          <h1 id="hero-title" class="hero-title">
+            <span class="title-line reveal">Игра начинается</span>
+            <span class="title-line title-accent reveal">с замысла.</span>
+          </h1>
+          <p class="hero-lead reveal">
+            Собираем людей за красивыми играми — чтобы вечер стал историей,
+            разговор превратился в идею, а идея однажды стала делом.
+          </p>
+          <div class="hero-actions reveal">
+            <a class="button button-primary magnetic" href="#collection">
+              <span>Смотреть коллекцию</span>
+              <span class="button-arrow" aria-hidden="true">↘</span>
+            </a>
+            <span class="hero-note">Три мира.<br />Один хороший вечер.</span>
+          </div>
+        </div>
+
+        <div class="hero-media reveal-media" data-parallax="0.045">
+          <img
+            src="assets/images/hero-together.jpg"
+            alt="Семья и друзья смеются за современной настольной игрой в светлом интерьере"
+            width="1536"
+            height="1024"
+          />
+          <div class="hero-media-label glass-card">
+            <span>Вечер 01</span>
+            <strong>Быть вместе —<br />и быть собой</strong>
+          </div>
+          <div class="hero-counter" aria-hidden="true">
+            <span>01</span><i></i><span>03</span>
+          </div>
+        </div>
+
+        <div class="hero-scroll" aria-hidden="true">
+          <span>Листайте</span>
+          <i></i>
+        </div>
+      </section>
+
+      <section class="idea section" id="idea" aria-labelledby="idea-title">
+        <div class="section-kicker reveal">
+          <span>01</span>
+          <p>Что происходит за столом</p>
+        </div>
+
+        <div class="idea-heading">
+          <h2 id="idea-title" class="display-heading reveal">
+            Иногда большой путь<br />начинается с одного хода.
+          </h2>
+          <p class="idea-intro reveal">
+            Настольная игра — маленькая модель мира. Здесь можно рискнуть,
+            договориться, увидеть неожиданное и узнать друг друга чуть лучше.
+          </p>
+        </div>
+
+        <div class="story-path" data-story-path>
+          <div class="story-line" aria-hidden="true"><i></i></div>
+
+          <article class="story-step reveal" data-step="1">
+            <span class="step-number">01</span>
+            <div class="step-symbol symbol-play" aria-hidden="true"><i></i><b></b></div>
+            <h3>Игра</h3>
+            <p>Вы садитесь за стол без повестки. Есть только правила, интерес и люди рядом.</p>
+          </article>
+
+          <article class="story-step reveal" data-step="2">
+            <span class="step-number">02</span>
+            <div class="step-symbol symbol-idea" aria-hidden="true"><i></i><b></b></div>
+            <h3>Идея</h3>
+            <p>Хороший ход меняет взгляд. Разговор продолжается уже за пределами партии.</p>
+          </article>
+
+          <article class="story-step reveal" data-step="3">
+            <span class="step-number">03</span>
+            <div class="step-symbol symbol-make" aria-hidden="true"><i></i><b></b></div>
+            <h3>Своё дело</h3>
+            <p>Любопытство становится замыслом, а замысел — тем, что хочется создать самому.</p>
+          </article>
+        </div>
+
+        <div class="idea-quote reveal">
+          <span class="quote-mark" aria-hidden="true">“</span>
+          <blockquote>
+            Мы выбираем игры не по коробке.<br />Мы выбираем, что останется после партии.
+          </blockquote>
+          <p>Кураторский принцип «Замысла»</p>
+        </div>
+      </section>
+
+      <section class="collection section" id="collection" aria-labelledby="collection-title">
+        <div class="section-kicker section-kicker-light reveal">
+          <span>02</span>
+          <p>Кураторская коллекция</p>
+        </div>
+
+        <div class="collection-head">
+          <h2 id="collection-title" class="display-heading reveal">Выберите свой мир</h2>
+          <p class="reveal">
+            Не каталог из сотен коробок, а три точных маршрута к вечеру,
+            который вы хотите прожить.
+          </p>
+        </div>
+
+        <div class="worlds" role="tablist" aria-label="Игровые миры">
+          <button
+            class="world-card is-active reveal"
+            id="tab-strategy"
+            type="button"
+            role="tab"
+            aria-selected="true"
+            aria-controls="panel-strategy"
+            data-world="strategy"
+          >
+            <span class="world-index">01</span>
+            <img
+              src="assets/images/world-strategy.jpg"
+              alt="Друзья увлечённо играют в абстрактную стратегию"
+              width="1536"
+              height="1024"
+              loading="lazy"
+            />
+            <span class="world-shade"></span>
+            <span class="world-title">Стратегия</span>
+            <span class="world-caption">Для тех, кто видит на два хода дальше</span>
+            <span class="world-open" aria-hidden="true">↗</span>
+          </button>
+
+          <button
+            class="world-card reveal"
+            id="tab-worlds"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-worlds"
+            tabindex="-1"
+            data-world="worlds"
+          >
+            <span class="world-index">02</span>
+            <img
+              src="assets/images/world-story.jpg"
+              alt="Красочный игровой мир с картой, фигурками и карточками"
+              width="1536"
+              height="1024"
+              loading="lazy"
+            />
+            <span class="world-shade"></span>
+            <span class="world-title">Миры</span>
+            <span class="world-caption">Для тех, кому одной реальности мало</span>
+            <span class="world-open" aria-hidden="true">↗</span>
+          </button>
+
+          <button
+            class="world-card reveal"
+            id="tab-together"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-together"
+            tabindex="-1"
+            data-world="together"
+          >
+            <span class="world-index">03</span>
+            <img
+              src="assets/images/hero-together.jpg"
+              alt="Тёплый игровой вечер в кругу близких"
+              width="1536"
+              height="1024"
+              loading="lazy"
+            />
+            <span class="world-shade"></span>
+            <span class="world-title">Вместе</span>
+            <span class="world-caption">Для вечеров, которые потом вспоминают</span>
+            <span class="world-open" aria-hidden="true">↗</span>
+          </button>
+        </div>
+
+        <div class="world-panels">
+          <article
+            class="world-panel is-active"
+            id="panel-strategy"
+            role="tabpanel"
+            aria-labelledby="tab-strategy"
+            data-panel="strategy"
+          >
+            <span class="world-panel-tag">Фокус · Решения · Риск</span>
+            <p>Точные игры для взрослых компаний, которым нравится думать вслух и удивлять друг друга.</p>
+            <a href="#invitation">Подобрать стратегию <span aria-hidden="true">→</span></a>
+          </article>
+          <article
+            class="world-panel"
+            id="panel-worlds"
+            role="tabpanel"
+            aria-labelledby="tab-worlds"
+            data-panel="worlds"
+            hidden
+          >
+            <span class="world-panel-tag">История · Открытие · Воображение</span>
+            <p>Большие приключения, в которые входишь на один вечер, а выходишь с общей историей.</p>
+            <a href="#invitation">Найти свой мир <span aria-hidden="true">→</span></a>
+          </article>
+          <article
+            class="world-panel"
+            id="panel-together"
+            role="tabpanel"
+            aria-labelledby="tab-together"
+            data-panel="together"
+            hidden
+          >
+            <span class="world-panel-tag">Близость · Смех · Память</span>
+            <p>Живые игры без возрастных границ — чтобы смотреть друг на друга, а не в экран.</p>
+            <a href="#invitation">Собрать близких <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+      </section>
+
+      <section class="club section" id="club" aria-labelledby="club-title">
+        <div class="section-kicker reveal">
+          <span>03</span>
+          <p>Клуб живых встреч</p>
+        </div>
+
+        <div class="club-layout">
+          <div class="club-copy">
+            <h2 id="club-title" class="display-heading reveal">
+              Красивое место.<br />Хорошая компания.<br /><em>Ваш ход.</em>
+            </h2>
+            <p class="reveal">
+              Мы создаём вечера, где всё уже продумано: игра подходит компании,
+              ведущий мягко знакомит с правилами, а пространство настраивает
+              на долгий разговор.
+            </p>
+            <a class="text-link reveal" href="#invitation">
+              Спланировать вечер <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <div class="club-collage" aria-label="Атмосфера клуба">
+            <figure class="club-photo club-photo-main reveal-media" data-parallax="0.025">
+              <img
+                src="assets/images/world-strategy.jpg"
+                alt="Партия в светлом современном игровом салоне"
+                width="1536"
+                height="1024"
+                loading="lazy"
+              />
+            </figure>
+            <figure class="club-photo club-photo-detail reveal-media" data-parallax="-0.018">
+              <img
+                src="assets/images/world-story.jpg"
+                alt="Детали красиво оформленной настольной игры"
+                width="1536"
+                height="1024"
+                loading="lazy"
+              />
+            </figure>
+            <div class="club-badge reveal" aria-hidden="true">
+              <span>Собрано</span>
+              <strong>с вниманием</strong>
+              <i></i>
+            </div>
+          </div>
+        </div>
+
+        <ul class="club-values reveal" aria-label="Особенности клуба">
+          <li><span>01</span>Кураторский выбор</li>
+          <li><span>02</span>Красивые залы</li>
+          <li><span>03</span>Живые ведущие</li>
+          <li><span>04</span>Вечера под вашу компанию</li>
+        </ul>
+      </section>
+
+      <section class="invitation section" id="invitation" aria-labelledby="invitation-title">
+        <div class="invitation-orbit" aria-hidden="true"><i></i><b></b></div>
+
+        <div class="invitation-copy">
+          <div class="section-kicker section-kicker-light reveal">
+            <span>04</span>
+            <p>Первая партия</p>
+          </div>
+          <h2 id="invitation-title" class="display-heading reveal">
+            Какой вечер<br />вы задумали?
+          </h2>
+          <p class="reveal">
+            Расскажите немного о компании — мы предложим направление и игру,
+            с которой лучше всего начать.
+          </p>
+          <span class="form-note reveal">Ответим лично. Без рассылок и формальностей.</span>
+        </div>
+
+        <div class="form-wrap reveal">
+          <form class="invitation-form" data-form novalidate>
+            <div class="field">
+              <label for="name">Как к вам обращаться</label>
+              <input id="name" name="name" type="text" autocomplete="name" required />
+              <span class="field-error">Пожалуйста, представьтесь</span>
+            </div>
+
+            <div class="field">
+              <label for="contact">Телефон или Telegram</label>
+              <input
+                id="contact"
+                name="contact"
+                type="text"
+                autocomplete="tel"
+                required
+                minlength="4"
+              />
+              <span class="field-error">Оставьте удобный способ связи</span>
+            </div>
+
+            <fieldset class="scenario-field">
+              <legend>Для кого выбираем?</legend>
+              <div class="scenario-options">
+                <label>
+                  <input type="radio" name="scenario" value="friends" checked />
+                  <span>Друзья</span>
+                </label>
+                <label>
+                  <input type="radio" name="scenario" value="family" />
+                  <span>Семья</span>
+                </label>
+                <label>
+                  <input type="radio" name="scenario" value="team" />
+                  <span>Команда</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <div class="field">
+              <label for="message">Что особенно важно?</label>
+              <textarea id="message" name="message" rows="2"></textarea>
+            </div>
+
+            <button class="button button-dark magnetic" type="submit">
+              <span>Получить подборку</span>
+              <span class="button-arrow" aria-hidden="true">↗</span>
+            </button>
+
+            <p class="demo-disclaimer">
+              Демо-форма: данные пока никуда не отправляются.
+            </p>
+          </form>
+
+          <div class="form-success" data-form-success role="status" aria-live="polite" hidden>
+            <span class="success-orbit" aria-hidden="true"><i></i></span>
+            <p class="eyebrow">Замысел принят</p>
+            <h3>Спасибо, <span data-success-name>друг</span>.</h3>
+            <p>В рабочей версии здесь появится подтверждение заявки. А пока — можно выбрать ещё один мир.</p>
+            <button class="text-link" type="button" data-form-reset>
+              Заполнить ещё раз <span aria-hidden="true">↗</span>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="brand footer-brand" href="#top">
+        <span class="brand-mark" aria-hidden="true"><i></i></span>
+        <span class="brand-name">Замысел</span>
+      </a>
+      <p>Клуб настольных игр<br />для больших идей.</p>
+      <div class="footer-links">
+        <a href="#collection">Коллекция</a>
+        <a href="#club">О клубе</a>
+        <a href="#invitation">Контакты</a>
+      </div>
+      <p class="footer-copy">© <span data-year></span> Замысел</p>
+    </footer>
+  </body>
+</html>
