@@ -8,6 +8,8 @@
   const glow = document.querySelector(".cursor-glow");
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+  root.classList.add("js-ready");
+
   document.querySelector("[data-year]").textContent = new Date().getFullYear();
 
   const revealItems = [...document.querySelectorAll(".reveal, .reveal-media")];
@@ -34,6 +36,11 @@
       .querySelectorAll(".hero .reveal, .hero .reveal-media")
       .forEach((item) => item.classList.add("is-visible"));
   }, 100);
+
+  // A failed observer must never leave editorial text hidden.
+  window.setTimeout(() => {
+    revealItems.forEach((item) => item.classList.add("is-visible"));
+  }, 900);
 
   const parallaxItems = [...document.querySelectorAll("[data-parallax]")];
   const storyPath = document.querySelector("[data-story-path]");
@@ -131,6 +138,7 @@
     menuToggle.setAttribute("aria-expanded", String(nextState));
     nav.classList.toggle("is-open", nextState);
     body.classList.toggle("menu-open", nextState);
+    if (nextState) window.setTimeout(() => nav.querySelector("a")?.focus(), 120);
   });
 
   nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
@@ -139,6 +147,16 @@
     if (event.key === "Escape" && nav.classList.contains("is-open")) {
       closeMenu();
       menuToggle.focus();
+    }
+
+    if (event.key === "Tab" && nav.classList.contains("is-open")) {
+      const focusable = [menuToggle, ...nav.querySelectorAll("a")];
+      const currentIndex = focusable.indexOf(document.activeElement);
+      const nextIndex = event.shiftKey ? currentIndex - 1 : currentIndex + 1;
+      if (nextIndex < 0 || nextIndex >= focusable.length) {
+        event.preventDefault();
+        focusable[event.shiftKey ? focusable.length - 1 : 0].focus();
+      }
     }
   });
 
