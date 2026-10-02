@@ -268,6 +268,237 @@
     });
   });
 
+  const clubGallery = document.querySelector("[data-club-gallery]");
+
+  if (clubGallery) {
+    const clubStage = clubGallery.querySelector("[data-club-stage]");
+    const clubScenes = [...clubGallery.querySelectorAll("[data-club-scene]")];
+    const clubTabs = [...clubGallery.querySelectorAll("[data-club-tab]")];
+    const clubPrevious = clubGallery.querySelector("[data-club-prev]");
+    const clubNext = clubGallery.querySelector("[data-club-next]");
+    const clubCounter = clubGallery.querySelector("[data-club-counter]");
+    const clubStatus = clubGallery.querySelector("[data-club-status]");
+    const clubHint = clubGallery.querySelector(".club-panorama-hint span");
+    const coarsePointer = window.matchMedia("(hover: none), (pointer: coarse)");
+    const cycleDuration = 8000;
+
+    let activeScene = Math.max(
+      clubScenes.findIndex((scene) => scene.classList.contains("is-active")),
+      0,
+    );
+    let targetPan = 50;
+    let currentPan = 50;
+    let panFrame = 0;
+    let cycleTimer = 0;
+    let transitionTimer = 0;
+    let galleryVisible = !("IntersectionObserver" in window);
+    let hoveringGallery = false;
+    let focusWithinGallery = false;
+    let draggingPanorama = false;
+    let dragPointerId = null;
+
+    if (clubHint) {
+      clubHint.textContent = coarsePointer.matches
+        ? "Проведите по фото — осмотритесь"
+        : "Двигайте курсор — осмотритесь";
+    }
+
+    const pauseClubCycle = () => {
+      window.clearTimeout(cycleTimer);
+      cycleTimer = 0;
+      clubGallery.classList.remove("is-playing");
+    };
+
+    const canCycleClubGallery = () =>
+      !prefersReducedMotion.matches &&
+      galleryVisible &&
+      !hoveringGallery &&
+      !focusWithinGallery &&
+      !draggingPanorama &&
+      !document.hidden;
+
+    const scheduleClubCycle = () => {
+      pauseClubCycle();
+      if (!canCycleClubGallery()) return;
+
+      // Re-adding the class restarts the slim progress line beneath the active scene.
+      void clubGallery.offsetWidth;
+      clubGallery.classList.add("is-playing");
+      cycleTimer = window.setTimeout(() => {
+        selectClubScene(activeScene + 1, { announce: false });
+      }, cycleDuration);
+    };
+
+    const setPanTarget = (value) => {
+      targetPan = Math.min(Math.max(value, 14), 86);
+      if (prefersReducedMotion.matches || panFrame) return;
+
+      const animatePan = () => {
+        currentPan += (targetPan - currentPan) * 0.1;
+        clubGallery.style.setProperty("--pan-position", `${currentPan.toFixed(2)}%`);
+
+        if (Math.abs(targetPan - currentPan) > 0.025) {
+          panFrame = window.requestAnimationFrame(animatePan);
+        } else {
+          currentPan = targetPan;
+          clubGallery.style.setProperty("--pan-position", `${currentPan}%`);
+          panFrame = 0;
+        }
+      };
+
+      panFrame = window.requestAnimationFrame(animatePan);
+    };
+
+    const panFromPointer = (event) => {
+      const rect = clubStage.getBoundingClientRect();
+      const ratio = Math.min(Math.max((event.clientX - rect.left) / rect.width, 0), 1);
+      setPanTarget(18 + ratio * 64);
+    };
+
+    function selectClubScene(index, options = {}) {
+      const { focusTab = false, announce = true } = options;
+      activeScene = (index + clubScenes.length) % clubScenes.length;
+
+      clubScenes.forEach((scene, sceneIndex) => {
+        const selected = sceneIndex === activeScene;
+        scene.classList.toggle("is-active", selected);
+        scene.setAttribute("aria-hidden", String(!selected));
+      });
+
+      clubTabs.forEach((tab, tabIndex) => {
+        const selected = tabIndex === activeScene;
+        tab.classList.toggle("is-active", selected);
+        tab.setAttribute("aria-selected", String(selected));
+        tab.tabIndex = selected ? 0 : -1;
+        if (selected && focusTab) tab.focus();
+        if (selected && coarsePointer.matches) {
+          tab.scrollIntoView({
+            behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+            block: "nearest",
+            inline: "center",
+          });
+        }
+      });
+
+      clubCounter.textContent = `${String(activeScene + 1).padStart(2, "0")} / ${String(
+        clubScenes.length,
+      ).padStart(2, "0")}`;
+
+      if (announce) {
+        clubStatus.textContent = `Показано: ${clubScenes[activeScene].dataset.sceneLabel}`;
+      }
+
+      targetPan = 50;
+      setPanTarget(50);
+      clubGallery.classList.remove("is-changing");
+      void clubGallery.offsetWidth;
+      clubGallery.classList.add("is-changing");
+      window.clearTimeout(transitionTimer);
+      transitionTimer = window.setTimeout(() => clubGallery.classList.remove("is-changing"), 1250);
+      scheduleClubCycle();
+    }
+
+    clubTabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => selectClubScene(index));
+      tab.addEventListener("keydown", (event) => {
+        if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+        event.preventDefault();
+
+        let nextIndex = index;
+        if (event.key === "ArrowRight") nextIndex = (index + 1) % clubTabs.length;
+        if (event.key === "ArrowLeft") nextIndex = (index - 1 + clubTabs.length) % clubTabs.length;
+        if (event.key === "Home") nextIndex = 0;
+        if (event.key === "End") nextIndex = clubTabs.length - 1;
+        selectClubScene(nextIndex, { focusTab: true });
+      });
+    });
+
+    clubPrevious.addEventListener("click", () => selectClubScene(activeScene - 1));
+    clubNext.addEventListener("click", () => selectClubScene(activeScene + 1));
+
+    clubStage.addEventListener("keydown", (event) => {
+      if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+      event.preventDefault();
+
+      if (event.key === "ArrowLeft") selectClubScene(activeScene - 1);
+      if (event.key === "ArrowRight") selectClubScene(activeScene + 1);
+      if (event.key === "Home") selectClubScene(0);
+      if (event.key === "End") selectClubScene(clubScenes.length - 1);
+    });
+
+    clubStage.addEventListener("pointermove", (event) => {
+      if (prefersReducedMotion.matches) return;
+      if (event.pointerType === "mouse" || draggingPanorama) panFromPointer(event);
+    });
+
+    clubStage.addEventListener("pointerdown", (event) => {
+      if (event.pointerType === "mouse" || prefersReducedMotion.matches) return;
+      draggingPanorama = true;
+      dragPointerId = event.pointerId;
+      clubGallery.classList.add("is-dragging");
+      clubStage.setPointerCapture?.(event.pointerId);
+      pauseClubCycle();
+      panFromPointer(event);
+    });
+
+    const endPanoramaDrag = (event) => {
+      if (!draggingPanorama || (dragPointerId !== null && event.pointerId !== dragPointerId)) return;
+      draggingPanorama = false;
+      dragPointerId = null;
+      clubGallery.classList.remove("is-dragging");
+      scheduleClubCycle();
+    };
+
+    clubStage.addEventListener("pointerup", endPanoramaDrag);
+    clubStage.addEventListener("pointercancel", endPanoramaDrag);
+
+    clubGallery.addEventListener("mouseenter", () => {
+      hoveringGallery = true;
+      pauseClubCycle();
+    });
+
+    clubGallery.addEventListener("mouseleave", () => {
+      hoveringGallery = false;
+      setPanTarget(50);
+      scheduleClubCycle();
+    });
+
+    clubGallery.addEventListener("focusin", () => {
+      focusWithinGallery = true;
+      pauseClubCycle();
+    });
+
+    clubGallery.addEventListener("focusout", () => {
+      window.setTimeout(() => {
+        focusWithinGallery = clubGallery.contains(document.activeElement);
+        scheduleClubCycle();
+      }, 0);
+    });
+
+    document.addEventListener("visibilitychange", scheduleClubCycle);
+    prefersReducedMotion.addEventListener?.("change", () => {
+      if (prefersReducedMotion.matches) {
+        currentPan = 50;
+        targetPan = 50;
+        clubGallery.style.setProperty("--pan-position", "50%");
+      }
+      scheduleClubCycle();
+    });
+
+    if ("IntersectionObserver" in window) {
+      const clubGalleryObserver = new IntersectionObserver(
+        ([entry]) => {
+          galleryVisible = entry.isIntersecting;
+          scheduleClubCycle();
+        },
+        { threshold: 0.22 },
+      );
+      clubGalleryObserver.observe(clubGallery);
+    } else {
+      scheduleClubCycle();
+    }
+  }
+
   const form = document.querySelector("[data-form]");
   const success = document.querySelector("[data-form-success]");
   const successName = document.querySelector("[data-success-name]");

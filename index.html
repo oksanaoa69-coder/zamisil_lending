@@ -38,8 +38,8 @@
     <title>Замысел — кураторский клуб настольных игр</title>
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <link rel="preload" href="assets/images/hero-together.jpg" as="image" />
-    <link rel="stylesheet" href="styles.css?v=20261001-worlds" />
-    <script src="script.js?v=20261001-nav" defer></script>
+    <link rel="stylesheet" href="styles.css?v=20261002-panorama" />
+    <script src="script.js?v=20261002-panorama" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">К содержанию</a>
@@ -360,30 +360,193 @@
             </a>
           </div>
 
-          <div class="club-collage" aria-label="Атмосфера клуба">
-            <figure class="club-photo club-photo-main reveal-media" data-parallax="0.025">
-              <img
-                src="assets/images/world-strategy.jpg"
-                alt="Участники камерного игрового вечера"
-                width="1536"
-                height="1024"
-                loading="lazy"
-              />
-            </figure>
-            <figure class="club-photo club-photo-detail reveal-media" data-parallax="-0.018">
-              <img
-                src="assets/images/world-story.jpg"
-                alt="Детали настольной игры и рук участников"
-                width="1536"
-                height="1024"
-                loading="lazy"
-              />
-            </figure>
-            <div class="club-badge reveal" aria-hidden="true">
-              <span>Собрано</span>
-              <strong>с вниманием</strong>
-              <i></i>
+          <div
+            class="club-panorama reveal-media"
+            data-club-gallery
+            aria-label="Панорамный обзор пространств клуба"
+          >
+            <div
+              class="club-panorama-stage"
+              data-club-stage
+              tabindex="0"
+              aria-describedby="club-panorama-hint"
+            >
+              <figure
+                class="club-scene is-active"
+                id="club-scene-city-day"
+                role="tabpanel"
+                aria-labelledby="club-tab-city-day"
+                aria-hidden="false"
+                data-club-scene
+                data-scene-label="Городской салон, дневной свет"
+              >
+                <img
+                  src="assets/images/club-city-day.webp"
+                  alt="Светлый панорамный зал клуба с игровыми столами и видом на город днём"
+                  width="2170"
+                  height="725"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>
+                  <span>Пространство 01</span>
+                  <strong>Городской салон</strong>
+                  <small>Дневной свет</small>
+                </figcaption>
+              </figure>
+
+              <figure
+                class="club-scene"
+                id="club-scene-city-night"
+                role="tabpanel"
+                aria-labelledby="club-tab-city-night"
+                aria-hidden="true"
+                data-club-scene
+                data-scene-label="Городской салон, ночной свет"
+              >
+                <img
+                  src="assets/images/club-city-night.webp"
+                  alt="Панорамный зал клуба с игровыми столами и вечерним городом за окнами"
+                  width="2188"
+                  height="718"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>
+                  <span>Пространство 01</span>
+                  <strong>Городской салон</strong>
+                  <small>Ночной свет</small>
+                </figcaption>
+              </figure>
+
+              <figure
+                class="club-scene"
+                id="club-scene-garden-day"
+                role="tabpanel"
+                aria-labelledby="club-tab-garden-day"
+                aria-hidden="true"
+                data-club-scene
+                data-scene-label="Зимний сад, дневной свет"
+              >
+                <img
+                  src="assets/images/club-garden-day.webp"
+                  alt="Солнечный зимний сад клуба с оливковыми деревьями и игровыми столами"
+                  width="2172"
+                  height="724"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>
+                  <span>Пространство 02</span>
+                  <strong>Зимний сад</strong>
+                  <small>Дневной свет</small>
+                </figcaption>
+              </figure>
+
+              <figure
+                class="club-scene"
+                id="club-scene-garden-night"
+                role="tabpanel"
+                aria-labelledby="club-tab-garden-night"
+                aria-hidden="true"
+                data-club-scene
+                data-scene-label="Зимний сад, ночной свет"
+              >
+                <img
+                  src="assets/images/club-garden-night.webp"
+                  alt="Зимний сад клуба с игровыми столами и мягким вечерним освещением"
+                  width="2172"
+                  height="724"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>
+                  <span>Пространство 02</span>
+                  <strong>Зимний сад</strong>
+                  <small>Ночной свет</small>
+                </figcaption>
+              </figure>
+
+              <div class="club-panorama-topline" aria-hidden="true">
+                <span>Панорамный обзор</span>
+                <i></i>
+                <strong data-club-counter>01 / 04</strong>
+              </div>
+
+              <p class="club-panorama-hint" id="club-panorama-hint">
+                <i aria-hidden="true"></i>
+                <span>Двигайте курсор — осмотритесь</span>
+              </p>
+
+              <div class="club-panorama-arrows">
+                <button type="button" data-club-prev aria-label="Предыдущее пространство">
+                  <span aria-hidden="true">←</span>
+                </button>
+                <button type="button" data-club-next aria-label="Следующее пространство">
+                  <span aria-hidden="true">→</span>
+                </button>
+              </div>
             </div>
+
+            <div class="club-panorama-toolbar">
+              <div class="club-panorama-tabs" role="tablist" aria-label="Выбрать вид пространства">
+                <button
+                  class="club-panorama-tab is-active"
+                  id="club-tab-city-day"
+                  type="button"
+                  role="tab"
+                  aria-selected="true"
+                  aria-controls="club-scene-city-day"
+                  data-club-tab
+                  data-scene-index="0"
+                >
+                  <span>01</span><strong>Город</strong><small>День</small>
+                </button>
+                <button
+                  class="club-panorama-tab"
+                  id="club-tab-city-night"
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="club-scene-city-night"
+                  tabindex="-1"
+                  data-club-tab
+                  data-scene-index="1"
+                >
+                  <span>02</span><strong>Город</strong><small>Ночь</small>
+                </button>
+                <button
+                  class="club-panorama-tab"
+                  id="club-tab-garden-day"
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="club-scene-garden-day"
+                  tabindex="-1"
+                  data-club-tab
+                  data-scene-index="2"
+                >
+                  <span>03</span><strong>Сад</strong><small>День</small>
+                </button>
+                <button
+                  class="club-panorama-tab"
+                  id="club-tab-garden-night"
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="club-scene-garden-night"
+                  tabindex="-1"
+                  data-club-tab
+                  data-scene-index="3"
+                >
+                  <span>04</span><strong>Сад</strong><small>Ночь</small>
+                </button>
+              </div>
+            </div>
+
+            <p class="sr-only" aria-live="polite" aria-atomic="true" data-club-status>
+              Показано: городской салон, дневной свет
+            </p>
           </div>
         </div>
 
