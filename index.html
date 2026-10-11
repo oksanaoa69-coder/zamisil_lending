@@ -41,8 +41,8 @@
     <title>Замысел — кураторский клуб настольных игр</title>
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <link rel="preload" href="assets/images/hero-together.jpg" as="image" />
-    <link rel="stylesheet" href="styles.css?v=20261011-design-modes" />
-    <script src="script.js?v=20261011-design-modes" defer></script>
+    <link rel="stylesheet" href="styles.css?v=20261011-magicpath" />
+    <script src="script.js?v=20261011-magicpath" defer></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -76,10 +76,12 @@
 
       <div class="header-tools">
         <div class="design-switcher" data-design-switcher aria-label="Вариант дизайна">
-          <span class="sr-only">Вариант дизайна</span>
-          <button type="button" data-design-option="classic" aria-pressed="true" aria-label="Светлый дизайн">01</button>
-          <button type="button" data-design-option="nocturne" aria-pressed="false" aria-label="Ночной дизайн">02</button>
-          <button type="button" data-design-option="gallery" aria-pressed="false" aria-label="Галерейный дизайн">03</button>
+          <span class="design-switcher-name" data-design-name aria-live="polite">Atelier</span>
+          <span class="design-switcher-options">
+            <button type="button" data-design-option="classic" aria-pressed="true" aria-label="Дизайн Atelier Editorial">01</button>
+            <button type="button" data-design-option="nocturne" aria-pressed="false" aria-label="Дизайн Nocturne Cinema">02</button>
+            <button type="button" data-design-option="gallery" aria-pressed="false" aria-label="Дизайн Portal Salon">03</button>
+          </span>
         </div>
         <button
           class="menu-toggle"
@@ -100,30 +102,40 @@
         <div class="hero-orbit orbit-two" aria-hidden="true"></div>
 
         <div class="hero-copy">
-          <p class="eyebrow reveal">Кураторский клуб настольных игр</p>
+          <p class="eyebrow reveal" data-design-eyebrow>Кураторский клуб настольных игр</p>
           <h1 id="hero-title" class="hero-title">
-            <span class="title-line reveal">Игра начинается</span>
-            <span class="title-line title-accent reveal">с замысла.</span>
+            <span class="title-line reveal" data-design-title-main>Игра начинается</span>
+            <span class="title-line title-accent reveal" data-design-title-accent>с замысла.</span>
           </h1>
-          <p class="hero-lead hero-positioning reveal">
+          <p class="hero-lead hero-positioning reveal" data-design-lead>
             «Замысел» — кураторский клуб настольных игр, где игра становится поводом для общения,
             новых идей и красивого вечера.
           </p>
           <div class="hero-actions reveal">
             <a class="button button-primary magnetic" href="#club">
-              <span>Познакомиться с клубом</span>
+              <span data-design-cta>Познакомиться с клубом</span>
               <span class="button-arrow" aria-hidden="true">↘</span>
             </a>
-            <span class="hero-note">Три игровых мира.<br />Один вечер, который запомнится.</span>
+            <span class="hero-note" data-design-note>Три игровых мира.<br />Один вечер, который запомнится.</span>
           </div>
         </div>
 
         <div class="hero-media reveal-media" data-parallax="0.045">
           <img
+            class="hero-image hero-image-classic"
             src="assets/images/hero-together.jpg"
             alt="Люди за настольной игрой в светлом пространстве клуба"
             width="1672"
             height="941"
+          />
+          <img
+            class="hero-image hero-image-portal"
+            src="assets/images/hero-portal-futures.webp"
+            alt="Сюрреалистичный игровой портал в кобальтовом пространстве"
+            width="1536"
+            height="1024"
+            loading="lazy"
+            decoding="async"
           />
           <div class="hero-media-label glass-card">
             <span>Вечер 01</span>

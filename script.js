@@ -16,12 +16,70 @@
   const designOptions = designSwitcher
     ? [...designSwitcher.querySelectorAll("[data-design-option]")]
     : [];
+  const designName = document.querySelector("[data-design-name]");
+  const themeColor = document.querySelector('meta[name="theme-color"]');
+  const designFields = {
+    eyebrow: document.querySelector("[data-design-eyebrow]"),
+    titleMain: document.querySelector("[data-design-title-main]"),
+    titleAccent: document.querySelector("[data-design-title-accent]"),
+    lead: document.querySelector("[data-design-lead]"),
+    cta: document.querySelector("[data-design-cta]"),
+    note: document.querySelector("[data-design-note]"),
+  };
+  const designContent = {
+    classic: {
+      name: "Atelier",
+      themeColor: "#f4f1e9",
+      eyebrow: "Кураторский клуб настольных игр",
+      titleMain: "Игра начинается",
+      titleAccent: "с замысла.",
+      lead: "«Замысел» — кураторский клуб настольных игр, где игра становится поводом для общения, новых идей и красивого вечера.",
+      cta: "Познакомиться с клубом",
+      note: "Три игровых мира.\nОдин вечер, который запомнится.",
+    },
+    nocturne: {
+      name: "Nocturne",
+      themeColor: "#07110f",
+      eyebrow: "Клуб живых встреч · вечерний сеанс",
+      titleMain: "Красивое место.",
+      titleAccent: "Ваш ход.",
+      lead: "Игра здесь — не фон, а тонкая драматургия вечера. Мы выбираем сценарий, свет и ритм, чтобы разговор случился сам.",
+      cta: "Получить приглашение",
+      note: "Хорошая компания.\nКамерный вечер после темноты.",
+    },
+    gallery: {
+      name: "Portal",
+      themeColor: "#080917",
+      eyebrow: "Иммерсивный клуб настольных игр",
+      titleMain: "Ваш вечер —",
+      titleAccent: "это портал.",
+      lead: "Мы проектируем не партию, а переход: из обычного дня — в пространство, где решения, истории и люди звучат ярче.",
+      cta: "Открыть ближайший мир",
+      note: "Стратегия. История. Связь.\nТри входа в другой вечер.",
+    },
+  };
 
-  const setDesign = (design) => {
+  const commitDesign = (design) => {
+    const content = designContent[design] || designContent.classic;
     root.dataset.design = design;
-    designOptions.forEach((option) => {
-      option.setAttribute("aria-pressed", String(option.dataset.designOption === design));
+    if (designName) designName.textContent = content.name;
+    if (themeColor) themeColor.setAttribute("content", content.themeColor);
+    Object.entries(designFields).forEach(([key, element]) => {
+      if (!element) return;
+      element.textContent = content[key];
     });
+    designOptions.forEach((option) =>
+      option.setAttribute("aria-pressed", String(option.dataset.designOption === design)),
+    );
+  };
+
+  const setDesign = (design, animate = false) => {
+    const apply = () => commitDesign(design);
+    if (animate && !prefersReducedMotion.matches && document.startViewTransition) {
+      document.startViewTransition(apply);
+    } else {
+      apply();
+    }
 
     try {
       window.localStorage.setItem("zamisil-design", design);
@@ -44,7 +102,7 @@
 
     setDesign(savedDesign);
     designOptions.forEach((option) => {
-      option.addEventListener("click", () => setDesign(option.dataset.designOption));
+      option.addEventListener("click", () => setDesign(option.dataset.designOption, true));
     });
   }
 
