@@ -7,9 +7,12 @@
       name="description"
       content="Замысел — кураторский клуб настольных игр, где игра становится поводом для общения, новых идей и красивого вечера."
     />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="author" content="Клуб «Замысел»" />
     <meta name="theme-color" content="#f4f1e9" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="ru_RU" />
+    <meta property="og:site_name" content="Замысел" />
     <meta property="og:title" content="Замысел — клуб настольных игр" />
     <meta
       property="og:description"
@@ -38,8 +41,18 @@
     <title>Замысел — кураторский клуб настольных игр</title>
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <link rel="preload" href="assets/images/hero-together.jpg" as="image" />
-    <link rel="stylesheet" href="styles.css?v=20261002-panorama" />
-    <script src="script.js?v=20261002-panorama" defer></script>
+    <link rel="stylesheet" href="styles.css?v=20261011-design-modes" />
+    <script src="script.js?v=20261011-design-modes" defer></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Замысел",
+        "url": "https://oksanaoa69-coder.github.io/zamisil_lending/",
+        "inLanguage": "ru-RU",
+        "description": "Кураторский клуб настольных игр для разговоров, новых взглядов и красивых вечеров."
+      }
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main">К содержанию</a>
@@ -53,17 +66,6 @@
         <span class="brand-name">Замысел</span>
       </a>
 
-      <button
-        class="menu-toggle"
-        type="button"
-        aria-expanded="false"
-        aria-controls="site-nav"
-        data-menu-toggle
-      >
-        <span>Меню</span>
-        <i aria-hidden="true"></i>
-      </button>
-
       <nav class="site-nav" id="site-nav" aria-label="Основная навигация" data-nav>
         <a href="#idea">Замысел</a>
         <a href="#collection">Игровые миры</a>
@@ -71,6 +73,25 @@
         <a href="#club">Клуб</a>
         <a class="nav-cta" href="#invitation">Ближайший вечер</a>
       </nav>
+
+      <div class="header-tools">
+        <div class="design-switcher" data-design-switcher aria-label="Вариант дизайна">
+          <span class="sr-only">Вариант дизайна</span>
+          <button type="button" data-design-option="classic" aria-pressed="true" aria-label="Светлый дизайн">01</button>
+          <button type="button" data-design-option="nocturne" aria-pressed="false" aria-label="Ночной дизайн">02</button>
+          <button type="button" data-design-option="gallery" aria-pressed="false" aria-label="Галерейный дизайн">03</button>
+        </div>
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          data-menu-toggle
+        >
+          <span>Меню</span>
+          <i aria-hidden="true"></i>
+        </button>
+      </div>
     </header>
 
     <main id="main">
@@ -117,6 +138,37 @@
           <span>Листайте</span>
           <i></i>
         </div>
+      </section>
+
+      <section class="night-note section" aria-labelledby="night-note-title">
+        <div class="night-note-copy reveal">
+          <p class="eyebrow">Сцена вечера</p>
+          <h2 id="night-note-title" class="display-heading">
+            Сначала —<br />настроение.<br /><em>Потом — правила.</em>
+          </h2>
+          <p>
+            У хорошей партии есть свой ритм: несколько минут, чтобы устроиться, один точный
+            вопрос от куратора и игра, которая мягко собирает людей за одним столом.
+          </p>
+          <ul class="night-note-details" aria-label="Что ждёт гостей клуба">
+            <li><span>01</span> Игра под вашу компанию</li>
+            <li><span>02</span> Ведущий, который знает меру</li>
+            <li><span>03</span> Время для разговора без спешки</li>
+          </ul>
+          <a class="text-link" href="#invitation">Собрать свой вечер <span aria-hidden="true">↗</span></a>
+        </div>
+
+        <figure class="night-note-media reveal-media">
+          <img
+            src="assets/images/game-night-editorial.png"
+            alt="Настольная игра с деревянными фигурами в тёплом вечернем свете"
+            width="1536"
+            height="1024"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>Тёплый свет · продуманные детали · ваш темп</figcaption>
+        </figure>
       </section>
 
       <section class="idea section" id="idea" aria-labelledby="idea-title">

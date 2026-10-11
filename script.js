@@ -12,6 +12,42 @@
 
   document.querySelector("[data-year]").textContent = new Date().getFullYear();
 
+  const designSwitcher = document.querySelector("[data-design-switcher]");
+  const designOptions = designSwitcher
+    ? [...designSwitcher.querySelectorAll("[data-design-option]")]
+    : [];
+
+  const setDesign = (design) => {
+    root.dataset.design = design;
+    designOptions.forEach((option) => {
+      option.setAttribute("aria-pressed", String(option.dataset.designOption === design));
+    });
+
+    try {
+      window.localStorage.setItem("zamisil-design", design);
+    } catch {
+      // The visual toggle also works when browser storage is unavailable.
+    }
+  };
+
+  if (designOptions.length) {
+    let savedDesign = "classic";
+    try {
+      savedDesign = window.localStorage.getItem("zamisil-design") || savedDesign;
+    } catch {
+      // Keep the editorial default when local storage is blocked.
+    }
+
+    if (!designOptions.some((option) => option.dataset.designOption === savedDesign)) {
+      savedDesign = "classic";
+    }
+
+    setDesign(savedDesign);
+    designOptions.forEach((option) => {
+      option.addEventListener("click", () => setDesign(option.dataset.designOption));
+    });
+  }
+
   const revealItems = [...document.querySelectorAll(".reveal, .reveal-media")];
 
   if ("IntersectionObserver" in window && !prefersReducedMotion.matches) {

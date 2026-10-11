@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://oksanaoa69-coder.github.io/zamisil_lending/sitemap.xml
